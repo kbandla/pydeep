@@ -9,7 +9,6 @@ assert len(data1) == 141312, "File length error"
 assert len(data2) ==  194560, "File lendth error"
 hash01 = pydeep.hash_buf(data1)
 hash02 = pydeep.hash_buf(data2)
-print hash01
 assert hash01 == file1hash, "Error hashing file1"
 assert hash02 == file2hash, "Error hashing file2"
 hash1 = pydeep.hash_file(file1)
