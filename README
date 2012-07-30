@@ -14,7 +14,6 @@ pydeep.hash_file('path-to-file')
 pydeep.compare('hash1','hash2')
 
 
-
 Replacing pyssdeep with pydeep
 ------------------------------
 pyssdeep was segfaulting manytimes on OSX. Thats why i quickly wrote pydeep
@@ -30,13 +29,17 @@ you can replace the first 2 lines with :
 
 And you should be all set
 
-
-
-
 ---------------------------------
-
 https://github.com/kbandla/pydeep
 
 Tested on :
+OSX 10.8 - x86_64
 OSX 10.7 - x86_64, i386
 CentOS 5 - x86_64, i386
+
+Tested against:
+ssdeep-2.9
+ssdeep-2.8
+
+Requires:
+Python 2.5 or later
