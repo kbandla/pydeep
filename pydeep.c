@@ -1,5 +1,6 @@
 #include <Python.h>
 #include <fuzzy.h>
+#include <unistd.h>
 
 static PyObject *pydeepError;
 
@@ -13,7 +14,18 @@ static PyObject * pydeep_hash_file(PyObject *self, PyObject *args){
         return NULL;
     }
 
+    if( access( filename, F_OK ) == -1 ) {
+        // File does not exist
+        PyErr_SetString(pydeepError, "File does not exist");
+        return NULL;
+    }
+
     inputFile = fopen(filename, "rb");
+    if( inputFile <=0 ){
+        // We could not open the file
+        PyErr_SetString(pydeepError, "Error opening file");
+        return NULL;
+    }
 
     // Allocate return buffers for hash
     hashResult = (char *)malloc(FUZZY_MAX_RESULT);
