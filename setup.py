@@ -2,7 +2,6 @@ from distutils.core import setup, Extension
 
 setup(
     name = "pydeep",
-    version = "0.1",
     author = "Kiran Bandla",
     author_email = "kbandla@in2void.com",
     license = "BSD",
