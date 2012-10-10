@@ -2,6 +2,8 @@
 #include <fuzzy.h>
 #include <unistd.h>
 
+#define PYDEEP_VERSION  "0.2"
+
 static PyObject *pydeepError;
 
 static PyObject * pydeep_hash_file(PyObject *self, PyObject *args){
@@ -98,16 +100,17 @@ static PyMethodDef pydeepMethods[] = {
     {"hash_file", pydeep_hash_file, METH_VARARGS, "compute the ssdeep fuzzy hash for a file"},
     {"hash_buf", pydeep_hash_buf, METH_VARARGS, "compute the ssdeep fuzzy hash for a buffer"},
     {"hash_bytes", pydeep_hash_buf, METH_VARARGS, "compute the ssdeep fuzzy hash for a buffer"},
-    {"compare", pydeep_compare, METH_VARARGS, "compute two ssdeep hashes"},
+    {"compare", pydeep_compare, METH_VARARGS, "compute similarity between two ssdeep hashes"},
     {NULL,  NULL}
 };
 
 // Initialization
 void initpydeep(void)
 {
-    PyObject *m;
-    m = Py_InitModule("pydeep", pydeepMethods);
+    PyObject *pydeep;
+    pydeep = Py_InitModule3("pydeep", pydeepMethods, "C/Python bindings for ssdeep [ssdeep.sourceforge.net]");
     pydeepError = PyErr_NewException("pydeep.Error", NULL, NULL);
     Py_INCREF(pydeepError);
-    PyModule_AddObject(m, "error", pydeepError);
+    PyModule_AddObject(pydeep, "error", pydeepError);
+    PyModule_AddStringConstant(pydeep, "__version__", PYDEEP_VERSION);
 }
