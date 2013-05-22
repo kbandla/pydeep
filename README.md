@@ -1,10 +1,9 @@
 # pydeep
 
-Python/C bindings for the ssdeep library at http://ssdeep.sourceforge.net
-
-hash_buf / hash_bytes - returns the ssdeep hash for a given buffer
-hash_file - returns the ssdeep hash for filepath
-compare - returns the % match between 2 hashes
+Python/C bindings for the ssdeep library at http://ssdeep.sourceforge.net:
+* hash_buf / hash_bytes - returns the ssdeep hash for a given buffer
+* hash_file - returns the ssdeep hash for filepath
+* compare - returns the % match between 2 hashes
 
 ```python
 import pydeep
@@ -15,33 +14,30 @@ pydeep.compare('hash1','hash2')
 
 ## Replacing pyssdeep with pydeep
 
-pyssdeep was segfaulting manytimes on OSX. Thats why i quickly wrote pydeep
+Pyssdeep was segfaulting manytimes on OSX. Thats why i quickly wrote pydeep.
 
-instead of :
+Instead of:
 ```python
  from ssdeep import ssdeep
  s = ssdeep()
  s.hash_file('some-file')
 ```
 
-you can replace the first 2 lines with :
+You can replace the first 2 lines with:
 ```python
 import pydeep as s
 ```
 
-And you should be all set
+And you should be all set.
 
----------------------------------
-https://github.com/kbandla/pydeep
-
-Tested on :
+### Tested On
 * OSX 10.8 - x86_64
 * OSX 10.7 - x86_64, i386
 * CentOS 5 - x86_64, i386
 
-Tested against:
+### Tested Against
 * ssdeep-2.9
 * ssdeep-2.8
 
-Requires:
+### Requires
 * Python 2.5 or later
