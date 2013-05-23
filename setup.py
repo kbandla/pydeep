@@ -15,6 +15,7 @@ setup(
     author_email = "kbandla@in2void.com",
     license = "BSD",
     version = get_version(),
+    description = "Python bindings for ssdeep",
     long_description = "Python/C Wrapper for the ssdeep library",
     url = "http://www.github.com/kbandla/pydeep",
     ext_modules = [Extension(
