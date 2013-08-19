@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Pydeep by kbandla</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Pydeep</h1>
+        <p>Python/C bindings for ssdeep</p>
+
+        <p class="view"><a href="https://github.com/kbandla/pydeep">View the Project on GitHub <small>kbandla/pydeep</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/kbandla/pydeep/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/kbandla/pydeep/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/kbandla/pydeep">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="pydeep" class="anchor" href="#pydeep"><span class="octicon octicon-link"></span></a>pydeep</h1>
+
+<p>Python/C bindings for the ssdeep library at <a href="http://ssdeep.sourceforge.net:">http://ssdeep.sourceforge.net:</a></p>
+
+<ul>
+<li>hash_buf / hash_bytes - returns the ssdeep hash for a given buffer</li>
+<li>hash_file - returns the ssdeep hash for filepath</li>
+<li>compare - returns the % match between 2 hashes</li>
+</ul><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pydeep</span>
+<span class="n">pydeep</span><span class="o">.</span><span class="n">hash_buf</span><span class="p">(</span><span class="s">'somedata'</span><span class="p">)</span>
+<span class="n">pydeep</span><span class="o">.</span><span class="n">hash_file</span><span class="p">(</span><span class="s">'path-to-file'</span><span class="p">)</span>
+<span class="n">pydeep</span><span class="o">.</span><span class="n">compare</span><span class="p">(</span><span class="s">'hash1'</span><span class="p">,</span><span class="s">'hash2'</span><span class="p">)</span>
+</pre></div>
+
+<h2>
+<a name="replacing-pyssdeep-with-pydeep" class="anchor" href="#replacing-pyssdeep-with-pydeep"><span class="octicon octicon-link"></span></a>Replacing pyssdeep with pydeep</h2>
+
+<p>Pyssdeep was segfaulting manytimes on OSX. Thats why i quickly wrote pydeep.</p>
+
+<p>Instead of:</p>
+
+<div class="highlight"><pre> <span class="kn">from</span> <span class="nn">ssdeep</span> <span class="kn">import</span> <span class="n">ssdeep</span>
+ <span class="n">s</span> <span class="o">=</span> <span class="n">ssdeep</span><span class="p">()</span>
+ <span class="n">s</span><span class="o">.</span><span class="n">hash_file</span><span class="p">(</span><span class="s">'some-file'</span><span class="p">)</span>
+</pre></div>
+
+<p>You can replace the first 2 lines with:</p>
+
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">pydeep</span> <span class="kn">as</span> <span class="nn">s</span>
+</pre></div>
+
+<p>And you should be all set.</p>
+
+<h3>
+<a name="tested-on" class="anchor" href="#tested-on"><span class="octicon octicon-link"></span></a>Tested On</h3>
+
+<ul>
+<li>OSX 10.8 - x86_64</li>
+<li>OSX 10.7 - x86_64, i386</li>
+<li>CentOS 5 - x86_64, i386</li>
+</ul><h3>
+<a name="tested-against" class="anchor" href="#tested-against"><span class="octicon octicon-link"></span></a>Tested Against</h3>
+
+<ul>
+<li>ssdeep-2.9</li>
+<li>ssdeep-2.8</li>
+</ul><h3>
+<a name="requires" class="anchor" href="#requires"><span class="octicon octicon-link"></span></a>Requires</h3>
+
+<ul>
+<li>Python 2.5 or later</li>
+</ul>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/kbandla">kbandla</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-43299916-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
