@@ -41,3 +41,12 @@ And you should be all set.
 
 ### Requires
 * Python 2.5 or later
+
+### Troubleshooting
+
+If you get an error related to "ImportError: libfuzzy.so.2" when trying to run 'import pydeep' in Linux, perform the following:
+
+sudo su
+echo "/usr/local/lib" >> /etc/ld.so.conf
+exit
+sudo ldconfig
