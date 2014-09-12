@@ -31,6 +31,7 @@ import pydeep as s
 And you should be all set.
 
 ### Tested On
+* OSX 10.9 - x86_64
 * OSX 10.8 - x86_64
 * OSX 10.7 - x86_64, i386
 * CentOS 5 - x86_64, i386
