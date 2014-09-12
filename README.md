@@ -34,8 +34,11 @@ And you should be all set.
 * OSX 10.8 - x86_64
 * OSX 10.7 - x86_64, i386
 * CentOS 5 - x86_64, i386
+* Debian 7 - x86_64
 
 ### Tested Against
+* ssdeep-2.11
+* ssdeep-2.10
 * ssdeep-2.9
 * ssdeep-2.8
 
