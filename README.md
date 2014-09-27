@@ -27,7 +27,6 @@ You can replace the first 2 lines with:
 ```python
 import pydeep as s
 ```
-
 And you should be all set.
 
 ### Tested On
@@ -38,10 +37,14 @@ And you should be all set.
 * Debian 7 - x86_64
 
 ### Tested Against
-* ssdeep-2.11
+* ssdeep-2.11.1
 * ssdeep-2.10
 * ssdeep-2.9
 * ssdeep-2.8
 
 ### Requires
 * Python 2.5 or later
+
+## Known Issues
+* ssdeep-2.11 is [known](https://github.com/kbandla/pydeep/issues/7) to have issues. A workround is [available](https://github.com/kbandla/pydeep/issues/7#issuecomment-57005597).
+* ssdeep-2.10 should be avoided. There is a [bug](https://jessekornblum.livejournal.com/295883.html) in the signature generation code.
