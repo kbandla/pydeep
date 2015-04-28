@@ -8,7 +8,7 @@ Python/C bindings for the ssdeep library at http://ssdeep.sourceforge.net:
 ```python
 import pydeep
 pydeep.hash_buf('somedata')
-pydeep.hash_file('path-to-file')
+pydeep.hash_file('/path/to/file')
 pydeep.compare('hash1','hash2')
 ```
 
@@ -30,6 +30,7 @@ import pydeep as s
 And you should be all set.
 
 ### Tested On
+* OSX 10.10 - x86_64
 * OSX 10.9 - x86_64
 * OSX 10.8 - x86_64
 * OSX 10.7 - x86_64, i386
@@ -37,6 +38,7 @@ And you should be all set.
 * Debian 7 - x86_64
 
 ### Tested Against
+* ssdeep-2.13
 * ssdeep-2.11.1
 * ssdeep-2.10
 * ssdeep-2.9

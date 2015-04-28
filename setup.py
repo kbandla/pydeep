@@ -22,5 +22,7 @@ setup(
         "pydeep",
         sources = ["pydeep.c"],
         libraries = ["fuzzy"],
+        library_dirs = ["/usr/local/lib/",],
+        include_dirs = ["/usr/local/include/",],
         ) ],
 )
