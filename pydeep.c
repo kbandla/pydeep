@@ -70,6 +70,7 @@ static PyObject * pydeep_hash_buf(PyObject *self, PyObject *args){
     inputStringBuffer = PyString_FromStringAndSize(inputBuffer, stringSize);
 
     ret = fuzzy_hash_buf((unsigned char*)inputBuffer, (uint32_t)stringSize, hashResult);
+    Py_XDECREF(inputStringBuffer);
     if (ret !=0 ){
         free(hashResult);
         PyErr_SetString(pydeepError, "Error in fuzzy_hash!");
