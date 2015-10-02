@@ -1,13 +1,17 @@
+import sys
+import io
+import glob
+sys.path.insert(0, glob.glob('../build/lib.*-' + str(sys.version_info[0]) + '.*')[0])
 import pydeep
 file1 = 'calc.exe'
 file2 = 'notepad.exe'
 file3 = 'bc'
-file1hash = '1536:JEl14rQcWAkN7GAlqbkfAGQGV8aMbrNyrf1w+noPvLV6eBsCXKc:JYmZWXyaiedMbrN6pnoXL1BsC'
-file2hash = '1536:0awOnbNQKLjWDyy1o5RefYMJUEbooPRrKKRl1P3:0YNQKPWDyDRefVJltZrpRl1P3'
-file3hash = '1536:MsjYdR3Bul8hcURWhEcg4/btZzDcQflbCUPEBEh8wkcGDioxMYeo7:TYf8l8htRWA4ztZsGlWUPEBEh8wmxMYe'
-data1 = open(file1).read()
-data2 = open(file2).read()
-data3 = open(file3).read()
+file1hash = b'1536:JEl14rQcWAkN7GAlqbkfAGQGV8aMbrNyrf1w+noPvLV6eBsCXKc:JYmZWXyaiedMbrN6pnoXL1BsC'
+file2hash = b'1536:0awOnbNQKLjWDyy1o5RefYMJUEbooPRrKKRl1P3:0YNQKPWDyDRefVJltZrpRl1P3'
+file3hash = b'1536:MsjYdR3Bul8hcURWhEcg4/btZzDcQflbCUPEBEh8wkcGDioxMYeo7:TYf8l8htRWA4ztZsGlWUPEBEh8wmxMYe'
+data1 = io.open(file1, 'rb').read()
+data2 = io.open(file2, 'rb').read()
+data3 = io.open(file3, 'rb').read()
 assert len(data1) == 114688, "File length error"
 assert len(data2) ==  69120, "File length error"
 assert len(data3) ==  77168, "File length error"
@@ -24,4 +28,4 @@ assert hash1 == file1hash, "Error hashing file1"
 assert hash2 == file2hash, "Error hashing file2"
 assert hash3 == file3hash, "Error hashing file3"
 assert pydeep.compare(hash1,hash2) == 0, "Error fuzzy compare value"
-print 'Stuff looks fine..' 
+print('Stuff looks fine..')
