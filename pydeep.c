@@ -1,6 +1,7 @@
 #include <Python.h>
 #include <fuzzy.h>
 #include <unistd.h>
+#include <bytesobject.h>
 
 #define PYDEEP_VERSION  "0.2"
 
@@ -42,14 +43,13 @@ static PyObject * pydeep_hash_file(PyObject *self, PyObject *args){
         PyErr_SetString(pydeepError, "Error in fuzzy_hash!");
         return NULL;
     }
-    ssdeepHash = PyString_FromString(hashResult);
+    ssdeepHash = PyBytes_FromString(hashResult);
     free(hashResult);
     fclose(inputFile);
     return ssdeepHash;
 }
 
 static PyObject * pydeep_hash_buf(PyObject *self, PyObject *args){
-    PyObject *inputStringBuffer = NULL;
     PyObject *ssdeepHash= NULL;
     Py_ssize_t stringSize = 0;
     char *inputBuffer=NULL;
@@ -67,15 +67,13 @@ static PyObject * pydeep_hash_buf(PyObject *self, PyObject *args){
         return NULL;
     }
 
-    inputStringBuffer = PyString_FromStringAndSize(inputBuffer, stringSize);
-
     ret = fuzzy_hash_buf((unsigned char*)inputBuffer, (uint32_t)stringSize, hashResult);
     if (ret !=0 ){
         free(hashResult);
         PyErr_SetString(pydeepError, "Error in fuzzy_hash!");
         return NULL;
     }
-    ssdeepHash = PyString_FromString( hashResult );
+    ssdeepHash = PyBytes_FromString(hashResult);
     free(hashResult);
     return ssdeepHash;
 }
@@ -84,7 +82,11 @@ static PyObject * pydeep_compare(PyObject *self, PyObject *args){
     char *ssdeepHash1= NULL;
     char *ssdeepHash2= NULL;
     int ret;
+#if PY_MAJOR_VERSION >= 3
+    if (!PyArg_ParseTuple(args, "yy", &ssdeepHash1, &ssdeepHash2)){
+#else
     if (!PyArg_ParseTuple(args, "ss", &ssdeepHash1, &ssdeepHash2)){
+#endif
         return NULL;
     }
     ret = fuzzy_compare(ssdeepHash1, ssdeepHash2);
@@ -104,13 +106,41 @@ static PyMethodDef pydeepMethods[] = {
     {NULL,  NULL}
 };
 
-// Initialization
+#if PY_MAJOR_VERSION >=3
+static struct PyModuleDef moduledef = {
+    PyModuleDef_HEAD_INIT,
+    "pydeep",       // m_name
+    NULL,           // m_doc
+    -1,             // m_size
+    pydeepMethods,  // m_methods
+    NULL,           // m_slots
+    NULL,           // m_traverse
+    NULL,           // m_clear
+    NULL            // m_free
+};
+#endif
+
+#if PY_MAJOR_VERSION >= 3
+PyObject *PyInit_pydeep(void)
+#else
 void initpydeep(void)
+#endif
 {
     PyObject *pydeep;
+#if PY_MAJOR_VERSION >= 3
+    // Python 3
+    pydeep = PyModule_Create(&moduledef);
+    if (pydeep == NULL)
+        return NULL;
+#else
+    // Python 2
     pydeep = Py_InitModule3("pydeep", pydeepMethods, "C/Python bindings for ssdeep [ssdeep.sourceforge.net]");
+#endif
     pydeepError = PyErr_NewException("pydeep.Error", NULL, NULL);
     Py_INCREF(pydeepError);
     PyModule_AddObject(pydeep, "error", pydeepError);
     PyModule_AddStringConstant(pydeep, "__version__", PYDEEP_VERSION);
+#if PY_MAJOR_VERSION >= 3
+    return pydeep;
+#endif
 }

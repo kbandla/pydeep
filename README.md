@@ -45,7 +45,7 @@ And you should be all set.
 * ssdeep-2.8
 
 ### Requires
-* Python 2.5 or later
+* Python 2.6 or later
 
 ## Known Issues
 * ssdeep-2.11 is [known](https://github.com/kbandla/pydeep/issues/7) to have issues. A workround is [available](https://github.com/kbandla/pydeep/issues/7#issuecomment-57005597).
