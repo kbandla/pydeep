@@ -1,5 +1,7 @@
 # pydeep
 
+[![travis](https://img.shields.io/travis/kbandla/pydeep.svg)](https://travis-ci.org/kbandla/pydeep)
+
 Python/C bindings for the ssdeep library at http://ssdeep.sourceforge.net:
 * hash_buf / hash_bytes - returns the ssdeep hash for a given buffer
 * hash_file - returns the ssdeep hash for filepath
@@ -45,7 +47,7 @@ And you should be all set.
 * ssdeep-2.8
 
 ### Requires
-* Python 2.5 or later
+* Python 2.6 or later
 
 ## Known Issues
 * ssdeep-2.11 is [known](https://github.com/kbandla/pydeep/issues/7) to have issues. A workround is [available](https://github.com/kbandla/pydeep/issues/7#issuecomment-57005597).
