@@ -17,7 +17,7 @@ pydeep.compare('hash1','hash2')
 
 ### Releases
 * For Python 2.5 and older, use the [0.4 release](https://github.com/kbandla/pydeep/releases/tag/0.4)
-* For Python 2.x and Python 3.x, use the master branch
+* For Python 2.6+ and Python 3.3+, use the master branch
 
 ### Tested On
 * OSX 10.10 - x86_64
