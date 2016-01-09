@@ -49,7 +49,6 @@ static PyObject * pydeep_hash_file(PyObject *self, PyObject *args){
 }
 
 static PyObject * pydeep_hash_buf(PyObject *self, PyObject *args){
-    PyObject *inputStringBuffer = NULL;
     PyObject *ssdeepHash= NULL;
     Py_ssize_t stringSize = 0;
     char *inputBuffer=NULL;
@@ -66,8 +65,6 @@ static PyObject * pydeep_hash_buf(PyObject *self, PyObject *args){
         PyErr_SetString(pydeepError, "Error allocating malloc buffer");
         return NULL;
     }
-
-    inputStringBuffer = PyString_FromStringAndSize(inputBuffer, stringSize);
 
     ret = fuzzy_hash_buf((unsigned char*)inputBuffer, (uint32_t)stringSize, hashResult);
     if (ret !=0 ){
