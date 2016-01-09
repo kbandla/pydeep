@@ -1,5 +1,7 @@
 # pydeep
 
+[![travis](https://img.shields.io/travis/kbandla/pydeep.svg)](https://travis-ci.org/kbandla/pydeep)
+
 Python/C bindings for the ssdeep library at http://ssdeep.sourceforge.net:
 * hash_buf / hash_bytes - returns the ssdeep hash for a given buffer
 * hash_file - returns the ssdeep hash for filepath
