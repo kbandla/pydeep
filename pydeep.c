@@ -2,7 +2,7 @@
 #include <fuzzy.h>
 #include <unistd.h>
 
-#define PYDEEP_VERSION  "0.2"
+#define PYDEEP_VERSION  "0.4"
 
 static PyObject *pydeepError;
 
