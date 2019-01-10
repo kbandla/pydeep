@@ -15,11 +15,8 @@ pydeep.hash_file('/path/to/file')
 pydeep.compare('hash1','hash2')
 ```
 
-### Releases
-* For Python 2.5 and older, use the [0.4 release](https://github.com/kbandla/pydeep/releases/tag/0.4)
-* For Python 2.6+ and Python 3.3+, use the master branch
-
 ### Tested On
+* Debian 9 - x86_64
 * OSX 10.10 - x86_64
 * OSX 10.9 - x86_64
 * OSX 10.8 - x86_64
@@ -28,6 +25,7 @@ pydeep.compare('hash1','hash2')
 * Debian 7 - x86_64
 
 ### Tested Against
+* ssdeep-2.14
 * ssdeep-2.13
 * ssdeep-2.11.1
 * ssdeep-2.10
