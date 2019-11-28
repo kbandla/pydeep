@@ -1,5 +1,4 @@
-from distutils.core import setup, Extension
-from distutils.cmd import Command
+from setuptools import setup, Command, Extension
 
 import os
 import sys
