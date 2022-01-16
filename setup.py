@@ -5,11 +5,13 @@ import os
 import sys
 import os.path as op
 
+
 def get_version():
-    with open(os.path.join(os.path.dirname(__file__), 'pydeep.c'),'r') as f:
+    with open(os.path.join(os.path.dirname(__file__), 'pydeep.c'), 'r') as f:
         for line in f:
             if "#define PYDEEP_VERSION" in line:
                 return line.split()[-1].strip('"')
+
 
 class TestCommand(Command):
     user_options = []
@@ -29,22 +31,23 @@ class TestCommand(Command):
         else:
             os.chdir("..")
 
+
 setup(
-    name = "pydeep",
-    author = "Kiran Bandla",
-    author_email = "kbandla@in2void.com",
-    license = "BSD",
-    version = get_version(),
-    description = "Python bindings for ssdeep",
-    long_description = "Python/C Wrapper for the ssdeep library",
-    url = "http://www.github.com/kbandla/pydeep",
-    ext_modules = [Extension(
+    name="pydeep",
+    author="Kiran Bandla",
+    author_email="kbandla@in2void.com",
+    license="BSD",
+    version=get_version(),
+    description="Python bindings for ssdeep",
+    long_description="Python/C Wrapper for the ssdeep library",
+    url="https://www.github.com/kbandla/pydeep",
+    ext_modules=[Extension(
         "pydeep",
-        sources = ["pydeep.c"],
-        libraries = ["fuzzy"],
-        library_dirs = ["/usr/local/lib/",],
-        include_dirs = ["/usr/local/include/",],
-        ) ],
+        sources=["pydeep.c"],
+        libraries=["fuzzy"],
+        library_dirs=["/usr/local/lib/"],
+        include_dirs=["/usr/local/include/"],
+    )],
     cmdclass={
         'test': TestCommand
     },

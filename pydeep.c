@@ -7,24 +7,24 @@
 
 static PyObject *pydeepError;
 
-static PyObject * pydeep_hash_file(PyObject *self, PyObject *args){
+static PyObject * pydeep_hash_file(PyObject *self, PyObject *args) {
     FILE *inputFile;
     PyObject *ssdeepHash = NULL;
     char *hashResult = NULL;
     char *filename;
     int ret;
-    if (!PyArg_ParseTuple(args, "s", &filename)){
+    if (!PyArg_ParseTuple(args, "s", &filename)) {
         return NULL;
     }
 
-    if( access( filename, F_OK ) == -1 ) {
+    if (access(filename, F_OK) == -1) {
         // File does not exist
         PyErr_SetString(pydeepError, "File does not exist");
         return NULL;
     }
 
     inputFile = fopen(filename, "rb");
-    if( inputFile <=0 ){
+    if (inputFile <= 0) {
         // We could not open the file
         PyErr_SetString(pydeepError, "Error opening file");
         return NULL;
@@ -32,12 +32,12 @@ static PyObject * pydeep_hash_file(PyObject *self, PyObject *args){
 
     // Allocate return buffers for hash
     hashResult = (char *)malloc(FUZZY_MAX_RESULT);
-    if (hashResult == NULL){
+    if (hashResult == NULL) {
         PyErr_SetString(pydeepError, "Error allocating malloc buffer");
         return NULL;
     }
     ret = fuzzy_hash_file(inputFile, hashResult);
-    if (ret != 0){
+    if (ret != 0) {
         free(hashResult);
         fclose(inputFile);
         PyErr_SetString(pydeepError, "Error in fuzzy_hash!");
@@ -49,26 +49,26 @@ static PyObject * pydeep_hash_file(PyObject *self, PyObject *args){
     return ssdeepHash;
 }
 
-static PyObject * pydeep_hash_buf(PyObject *self, PyObject *args){
-    PyObject *ssdeepHash= NULL;
+static PyObject * pydeep_hash_buf(PyObject *self, PyObject *args) {
+    PyObject *ssdeepHash = NULL;
     Py_ssize_t stringSize = 0;
-    char *inputBuffer=NULL;
+    char *inputBuffer = NULL;
     char *hashResult;
     int ret;
 
-    if (!PyArg_ParseTuple(args, "s#", &inputBuffer, &stringSize)){
+    if (!PyArg_ParseTuple(args, "s#", &inputBuffer, &stringSize)) {
         return NULL;
     }
 
     // Allocate return buffers for hash
     hashResult = (char *)malloc(FUZZY_MAX_RESULT);
-    if (hashResult == NULL){
+    if (hashResult == NULL) {
         PyErr_SetString(pydeepError, "Error allocating malloc buffer");
         return NULL;
     }
 
     ret = fuzzy_hash_buf((unsigned char*)inputBuffer, (uint32_t)stringSize, hashResult);
-    if (ret !=0 ){
+    if (ret != 0) {
         free(hashResult);
         PyErr_SetString(pydeepError, "Error in fuzzy_hash!");
         return NULL;
@@ -78,19 +78,19 @@ static PyObject * pydeep_hash_buf(PyObject *self, PyObject *args){
     return ssdeepHash;
 }
 
-static PyObject * pydeep_compare(PyObject *self, PyObject *args){
+static PyObject * pydeep_compare(PyObject *self, PyObject *args) {
     char *ssdeepHash1= NULL;
     char *ssdeepHash2= NULL;
     int ret;
 #if PY_MAJOR_VERSION >= 3
-    if (!PyArg_ParseTuple(args, "yy", &ssdeepHash1, &ssdeepHash2)){
+    if (!PyArg_ParseTuple(args, "yy", &ssdeepHash1, &ssdeepHash2)) {
 #else
-    if (!PyArg_ParseTuple(args, "ss", &ssdeepHash1, &ssdeepHash2)){
+    if (!PyArg_ParseTuple(args, "ss", &ssdeepHash1, &ssdeepHash2)) {
 #endif
         return NULL;
     }
     ret = fuzzy_compare(ssdeepHash1, ssdeepHash2);
-    if (ret < 0){
+    if (ret < 0) {
         PyErr_SetString(pydeepError, "Error in fuzzy compare");
         return NULL;
     }
