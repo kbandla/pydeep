@@ -1,0 +1,26 @@
+name: Build wheels
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Build wheels
+        uses: RalfG/python-wheels-manylinux-build@v0.4.2
+        with:
+          python-versions: 'cp36-cp36m cp37-cp37m cp38-cp38 cp39-cp39 cp310-cp310'
+          system-packages: 'ssdeep-devel'
+      -
+        name: Show wheels
+        run: |
+          ls -la dist/
